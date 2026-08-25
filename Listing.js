@@ -92,6 +92,8 @@ function checkUserRole(user) {
 
 loadMoreJobBtn.addEventListener('click', () => {
   fetchAllApproveJobs(maxdisplay, (approvedJob, maximum) => {
+    console.log(maxdisplay)
+    console.log(maximum)
     if (maximum === maxdisplay) loadMoreJobBtn.style.display = `none`
     allApprovedJobs = approvedJob
     applyFilter()
