@@ -138,7 +138,7 @@ function checkAndSpin(param) {
     summitforReviewBtn.disabled = true
   } else {
     post_job_spinner.hidden = true
-    summitforReviewText.textContent = `Create Account`
+    summitforReviewText.textContent = `Submit for Review`
     summitforReviewBtn.disabled = false
   }
 }
