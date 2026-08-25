@@ -97,15 +97,17 @@ const jobdescription = document.querySelector('.js-job-description')
 const jobrequirement = document.querySelector('.js-job-requirements')
 const aboutcompany = document.querySelector('.js-job-company-about')
 
-const companylogo=document.querySelector('.)
+const companylogo=document.querySelector('.js-job-logo')
 
 
 const skeletonFrame = document.querySelector('.js-job-details-skeleton')
 const displayJobDiv = document.querySelector('.js-job-details-card')
+
 function displayAJobDetails(singleJob) {
   skeletonFrame.hidden = true
   displayJobDiv.hidden = false
   let allReq = ''
+companylogo.src=`${singleJob.companyLogoUrl}`
   jobTitle.textContent = singleJob.title
   companyname.textContent = singleJob.companyName
   joblocation.textContent = singleJob.location
