@@ -45,6 +45,7 @@ watchAuthChange(
       checkUserRole(userDetails)
 
       fetchAllApproveJobs(maxdisplay, (approvedJob, maximum, totaljob) => {
+        console.log(totaljob)
         totaljob === 5 ? loadMoreJobBtn.style.display = `none` : loadMoreJobBtn.style.display = `flex`
         allApprovedJobs = approvedJob
         applyFilter(`firstLoad`)
