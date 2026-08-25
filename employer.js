@@ -15,7 +15,7 @@ watchAuthChange(
   async (user) => {
     companyId = user.uid
     const userDetails = await getUser(companyId)
-    console.log(userDetails)
+    //console.log(userDetails
     checkRole(userDetails)
 
     companyName = userDetails.companyName
@@ -36,7 +36,7 @@ watchAuthChange(
 const employerimg = document.querySelector('.js-navbar-avatar')
 
 function checkRole(userDetails) {
-  console.log(userDetails)
+ // console.log(userDetails)
   if (userDetails.suspend) {
     showSuspendedScreen(logOut, userDetails.suspensionReason)
     return
@@ -71,7 +71,7 @@ const totalApplicants = document.querySelector('.js-stat-total-applicants')
 
 
 function displayStat(jobs) {
-  console.log(jobs)
+ // console.log(jobs)
   const results = jobs.reduce((accum, job) => {
     if (job.status === `pending`) accum.pending.push(job)
     else if (job.status === `accepted`) accum.accepted.push(job)
@@ -122,7 +122,7 @@ function displayEmployerJobs(jobs) {
 
 // THIS CHECK STATUS OF REJECT OR ACCEPT AND DESIRED WHICH HTML TO SHOW FOR EACH CHECK
 function checkStatus(job) {
-  console.log(job)
+ // console.log(job)
   if (job.status === `rejected`) {
     return `<span class="job-row__applicants">&mdash;</span>
           <span class="status-pill status-pill--${job.status}">Rejected</span>
@@ -193,7 +193,7 @@ statusFilter.addEventListener('change', (e) => {
 
 // FILTER LOGIC
 function applyFilter() {
-  console.log(`called`)
+ // console.log(`called`)
   let filtered = allJobs
   if (status !== `all`) {
     filtered = filtered.filter((job) => {
