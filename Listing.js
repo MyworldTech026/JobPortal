@@ -246,7 +246,7 @@ searchBtn.addEventListener('click', () => {
 
 searchBar.addEventListener('input', (e) => {
   if (searchBar.value === '') {
-    displayJobs(allApprovedJobs)
+    applyFilter(allApprovedJobs)
   }
 })
 
