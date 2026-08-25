@@ -46,7 +46,7 @@ watchAuthChange(
 
       fetchAllApproveJobs(maxdisplay, (approvedJob, maximum, totaljob) => {
         console.log(totaljob)
-        totaljob === 5 ? loadMoreJobBtn.style.display = `none` : loadMoreJobBtn.style.display = `flex`
+        totaljob === 5 ? loadMoreJobBtn.hidden=true : loadMoreJobBtn.style.display = `flex`
         allApprovedJobs = approvedJob
         applyFilter(`firstLoad`)
         maxdisplay += 5
