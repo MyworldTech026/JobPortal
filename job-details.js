@@ -97,6 +97,8 @@ const jobdescription = document.querySelector('.js-job-description')
 const jobrequirement = document.querySelector('.js-job-requirements')
 const aboutcompany = document.querySelector('.js-job-company-about')
 
+const companylogo=document.querySelector('.)
+
 
 const skeletonFrame = document.querySelector('.js-job-details-skeleton')
 const displayJobDiv = document.querySelector('.js-job-details-card')
