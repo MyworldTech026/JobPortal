@@ -1,6 +1,6 @@
 import { watchAuthChange, DeleteUser, logOut, reauthGoogleUserForDelete } from './sharedauthfile.js'
 import { updateEmployerProfile, uploadToCloudinary, updateProfileImage, listenForUser, saveToStorage, finishAccountDeletion, deleteAllJobsByEmployer } from './sharedfirestorefile.js'
-import { hamburgerIcon, signOut,showSuspendedScreen } from './utils.js';
+import { hamburgerIcon, signOut,showSuspendedScreen ,showToast} from './utils.js';
 
 
 let USER
@@ -9,6 +9,9 @@ let userid
 let userDetails
 const photoPreview = document.querySelector('.js-logo-preview')
 const navbarAvater = document.querySelector('.js-navbar-avatar')
+
+const toast = document.querySelector('.js-toast');
+const toastMessage = document.querySelector('.js-toast-message');
 
 watchAuthChange(
   async (user) => {
@@ -69,7 +72,7 @@ form.addEventListener('submit', async (e) => {
   const email = contactEmail.value.trim()
 
   if (!companyName || !industry || !About) {
-    alert(`Fill all field, excluding companywebsite`)
+    showToast(toast,toastMessage,`Fill all field, excluding companywebsite`)
     return
   }
 
