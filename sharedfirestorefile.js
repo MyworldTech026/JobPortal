@@ -49,7 +49,7 @@ export async function PostJob(jobDetails) {
 
 // limit(max)
 export async function fetchAllApproveJobs(max, callback) {
-   console.log(max)
+  // console.log(max)
    const q = query(
       collection(db, 'Jobs'),
       where('status', '==', 'accepted')
