@@ -13,7 +13,7 @@ let userid;
 let loginUsername;
 
 let allApprovedJobs;
-let maxdisplay = 10
+let maxdisplay = 5
 
 
 const toast = document.querySelector('.js-toast');
