@@ -1,0 +1,73 @@
+/* ==========================================================================
+   SIGNUP PAGE STYLES
+   Link order: tokens.css -> components.css -> signup.css
+
+   Note: base .auth-page / .auth-card / .auth-divider styles live in
+   components.css (shared with Login). This file only adds what's
+   unique to Signup: a slightly wider card and the role-conditional
+   field groups.
+   ========================================================================== */
+
+/* Signup form is longer than Login, so give it a bit more width */
+/* .auth-card--wide {
+  max-width: 480px;
+} */
+
+/* Wrapper around graduate-only / employer-only fields.
+   JS toggles visibility using the [hidden] attribute or a class —
+   pick whichever you're already using elsewhere for consistency. */
+/* .signup-fields {
+  padding-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
+} */
+
+/* Checkbox + inline label, used for the Terms of Service agreement */
+/* .checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.checkbox-label a {
+  color: var(--color-primary);
+  font-weight: var(--fw-medium);
+}
+ */
+
+
+ /* ==========================================================================
+   SIGNUP PAGE STYLES
+   Link order: tokens.css -> components.css -> signup.css
+
+   Note: base .auth-page / .auth-card / .auth-divider styles live in
+   components.css (shared with Login). This file only adds what's
+   unique to Signup: a slightly wider card and the role-conditional
+   field groups.
+   ========================================================================== */
+
+/* Signup form is longer than Login, so give it a bit more width */
+.auth-card--wide {
+  max-width: 480px;
+}
+
+/* Wrapper around graduate-only / employer-only fields.
+   JS toggles visibility using the [hidden] attribute or a class —
+   pick whichever you're already using elsewhere for consistency. */
+.signup-fields {
+  padding-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/* .checkbox-label styling now lives in components.css (shared with Post a Job) */
+

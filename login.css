@@ -1,0 +1,11 @@
+/* ==========================================================================
+   LOGIN PAGE STYLES
+   Link order: tokens.css -> components.css -> login.css
+
+   Note: the centered card layout (.auth-page, .auth-card, .auth-divider, etc.)
+   lives in components.css because Signup reuses the exact same layout.
+   This file is only for anything unique to the Login page itself.
+   ========================================================================== */
+
+/* Reserved for Login-only tweaks. Nothing needed yet — the shared
+   .auth-page / .auth-card styles in components.css cover this page fully. */

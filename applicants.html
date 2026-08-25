@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Applicants — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="applicants.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR — employer state -->
+  <nav class="navbar js-navbar-employer" id="navbar-employer">
+    <a href="employer-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="employer-dashboard.html">Dashboard</a></li>
+        <li><a href="listings.html">Browse Listings</a></li>
+        <li><a href="post-job.html">Post a Job</a></li>
+      </ul>
+      <a href="company-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Company logo" class="navbar__avatar js-navbar-avatar">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions">
+      <a href="post-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+    </div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="applicants-page">
+    <a href="employer-dashboard.html" class="back-link">&larr; Back to dashboard</a>
+
+    <!-- ============================================================
+         JOB CONTEXT HEADER
+         JS reads the job ID from the URL (e.g. ?jobId=abc123) and
+         fills in this job's own details here, so the employer knows
+         exactly which listing these applicants belong to.
+    ============================================================= -->
+    <div class="applicants-header js-applicants-header-skeleton">
+      <div>
+        <div class="skeleton" style="width:260px;height:24px;margin-bottom:8px;"></div>
+        <div class="skeleton" style="width:180px;height:14px;"></div>
+      </div>
+      <div class="skeleton" style="width:110px;height:26px;border-radius:999px;"></div>
+    </div>
+
+    <div class="applicants-header js-applicants-header" hidden>
+      <div>
+        <h1 class="applicants-header__title js-job-title">Frontend Developer</h1>
+        <p class="applicants-header__meta js-job-meta">Lagos, Nigeria &middot; Full-time &middot; Posted Jul 18, 2026
+        </p>
+      </div>
+      <span class="js-applicant-count applicants-header__count"> applicants</span>
+    </div>
+
+    <!-- Filter by application status -->
+    <div class="applicants-toolbar">
+      <select class="form-select js-applicant-status-filter" style="width: auto;">
+        <option value="all">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="accepted">Accepted</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <!-- ============================================================
+         APPLICANTS LIST
+         The card below is ONE example. Your JS clears .js-applicants-list
+         and renders one of these per application document tied to
+         this job, fetched from Firestore.
+    ============================================================= -->
+    <div class="applicants-list js-applicants-list">
+
+      <div class="skeleton-loading js-applicants-skeleton">
+        <div class="applicant-card">
+          <div class="skeleton" style="width:56px;height:56px;border-radius:50%;flex-shrink:0;"></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+            <div class="skeleton" style="width:40%;height:16px;"></div>
+            <div class="skeleton" style="width:60%;height:12px;"></div>
+            <div class="skeleton" style="width:90%;height:12px;margin-top:4px;"></div>
+          </div>
+          <div class="skeleton" style="width:90px;height:32px;border-radius:6px;flex-shrink:0;"></div>
+        </div>
+        <div class="applicant-card">
+          <div class="skeleton" style="width:56px;height:56px;border-radius:50%;flex-shrink:0;"></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+            <div class="skeleton" style="width:35%;height:16px;"></div>
+            <div class="skeleton" style="width:55%;height:12px;"></div>
+            <div class="skeleton" style="width:85%;height:12px;margin-top:4px;"></div>
+          </div>
+          <div class="skeleton" style="width:90px;height:32px;border-radius:6px;flex-shrink:0;"></div>
+        </div>
+      </div>
+
+      <!-- <div class="applicant-card">
+        <img src="https://via.placeholder.com/56" alt="" class="applicant-card__photo">
+
+        <div class="applicant-card__info">
+          <span class="applicant-card__name">Jane Doe</span>
+          <span class="applicant-card__field">Computer Science &middot; Applied Jul 20, 2026</span>
+          <p class="applicant-card__note">
+            "I've been building projects with React and Firebase for the past year
+            and would love to bring that experience to your team."
+          </p>
+        </div>
+
+        <div class="applicant-card__actions">
+          <a href="#" class="btn btn--secondary btn--sm js-view-cv-link" target="_blank">View CV</a>
+          <select class="form-select js-applicant-status-select" style="width: auto;">
+            <option value="pending">Pending</option>
+            <option value="accepted">Accept</option>
+            <option value="rejected">Reject</option>
+          </select>
+        </div>
+      </div> -->
+
+      <!-- <div class="applicant-card">
+        <img src="https://via.placeholder.com/56" alt="" class="applicant-card__photo">
+
+        <div class="applicant-card__info">
+          <span class="applicant-card__name">John Smith</span>
+          <span class="applicant-card__field">Software Engineering &middot; Applied Jul 19, 2026</span>
+          <p class="applicant-card__note">
+            "Excited about this role — I've worked on a few vanilla JS projects
+            with Firestore that map closely to what you're building."
+          </p>
+        </div>
+
+        <div class="applicant-card__actions">
+          <a href="#" class="btn btn--secondary btn--sm js-view-cv-link" target="_blank">View CV</a>
+          <select class="form-select js-applicant-status-select" style="width: auto;">
+            <option value="pending" selected>Pending</option>
+            <option value="accepted">Accept</option>
+            <option value="rejected">Reject</option>
+          </select>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- Empty state - shown when this job has zero applicants -->
+    <div class="empty-state js-no-applicants" hidden>
+      <p class="empty-state__title">No applicants yet</p>
+      <p class="empty-state__desc">Once graduates apply, they'll show up here.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="employer-dashboard.html">Dashboard</a></li>
+          <li><a href="post-job.html">Post a Job</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="toast js-toast" hidden>
+    <span class="toast__icon js-toast-icon">⚠️</span>
+    <span class="js-toast-message">Message goes here</span>
+  </div>
+
+  <script type="module" src="applicants.js"></script>
+</body>
+
+</html>

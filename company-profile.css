@@ -1,0 +1,10 @@
+/* ==========================================================================
+   COMPANY PROFILE PAGE STYLES (Employer)
+   Link order: tokens.css -> components.css -> company-profile.css
+
+   Note: .profile-page, .profile-layout, .profile-card, .photo-upload,
+   and .profile-card--danger all live in components.css (shared with
+   graduate Edit Profile). Nothing Company-Profile-specific is needed
+   yet — this file is a placeholder for future employer-only tweaks.
+   ========================================================================== */
+

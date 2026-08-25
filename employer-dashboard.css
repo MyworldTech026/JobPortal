@@ -1,0 +1,105 @@
+/* ==========================================================================
+   EMPLOYER DASHBOARD STYLES
+   Link order: tokens.css -> components.css -> employer-dashboard.css
+
+   Note: .stats-row, .stat-box, .empty-state live in components.css
+   (shared with Graduate Dashboard and Listings). This file only has
+   what's unique to the employer's posted-jobs list.
+   ========================================================================== */
+
+.dashboard-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+.dashboard-header {
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard-header__title {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard-header__subtitle {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+/* ---------------------------------------------------------------------------
+   JOBS SECTION
+--------------------------------------------------------------------------- */
+.jobs-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.jobs-section__title {
+  font-size: var(--fs-xl);
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.job-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.job-row__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.job-row__title {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+}
+
+.job-row__meta {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.job-row__applicants {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  width: 100px;
+  text-align: center;
+}
+
+.job-row__actions {
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .job-row {
+    flex-wrap: wrap;
+  }
+
+  .job-row__applicants {
+    width: auto;
+    text-align: left;
+  }
+}
+

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Post a Job — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="post-job.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR — employer state -->
+  <nav class="navbar js-navbar-employer" id="navbar-employer">
+    <a href="employer-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="employer-dashboard.html">Dashboard</a></li>
+        <li><a href="listings.html">Browse Listings</a></li>
+        <li><a href="post-job.html" class="active">Post a Job</a></li>
+      </ul>
+      <a href="company-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Company logo" class="navbar__avatar js-navbar-avatar">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions">
+      <a href="post-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+    </div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="post-job-page">
+    <div class="info-banner js-profile-incomplete-banner" hidden>
+      Your company profile is incomplete. Add your company name and a bit more info so graduate trust your listings.
+      <a href="company-profile.html" style="font-weight:600; margin-left:6px;">Complete it now →</a>
+      <button class="js-dismiss-banner-btn"
+        style="background:none;border:none;float:right;cursor:pointer;">&times;</button>
+    </div>
+
+    <h1 class="post-job-page__title">Post a Job</h1>
+    <p class="post-job-page__subtitle">Fill in the details below. Every new listing is reviewed before it goes live.</p>
+
+    <!-- Reminder banner about the manual review flow, so employers aren't
+         confused when their job doesn't appear on Listings instantly -->
+    <div class="info-banner">
+      <strong>Note:</strong> new job posts are reviewed by our team before appearing
+      publicly. This usually takes less than 24 hours.
+    </div>
+
+
+    <div class="auth-alert auth-alert--error js-post-job-alert"></div>
+
+    <form class="post-job-card js-post-job-form">
+
+      <div class="form-group">
+        <label for="job-title">Job title</label>
+        <input type="text" id="job-title" class="form-input js-job-title-input" placeholder="e.g. Frontend Developer"
+          required>
+        <span class="form-error js-job-title-error" style="display:none;"></span>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job-location">Location</label>
+          <select id="job-location" class="form-select js-job-location-input" required>
+            <option value="">Select location</option>
+            <option value="Remote">Remote</option>
+            <option value="Lagos">Lagos</option>
+            <option value="Abuja">Abuja</option>
+            <option value="Port-harcourt">Port Harcourt</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="job-type">Job type</label>
+          <select id="job-type" class="form-select js-job-type-input" required>
+            <option value="">Select type</option>
+            <option value="full-time">Full-time</option>
+            <option value="part-time">Part-time</option>
+            <option value="internship">Internship</option>
+            <option value="contract">Contract</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job-category">Category</label>
+          <select id="job-category" class="form-select js-job-category-input" required>
+            <option value="">Select category</option>
+            <option value="engineering">Engineering</option>
+            <option value="design">Design</option>
+            <option value="marketing">Marketing</option>
+            <option value="sales">Sales</option>
+            <option value="data">Data & Analytics</option>
+            <option value="customer-support">Customer Support</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="job-level">Experience level</label>
+          <select id="job-level" class="form-select js-job-level-input">
+            <option value="entry-level">Entry Level</option>
+            <option value="mid-level">Mid Level</option>
+            <option value="senior-level">Senior Level</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="job-salary">Monthly salary (₦)</label>
+        <input type="number" id="job-salary" class="form-input js-job-salary-input" placeholder="e.g. 250000" min="0">
+        <span class="form-hint">Leave blank if you'd rather discuss salary during interviews.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="job-description">Job description</label>
+        <textarea id="job-description" class="form-textarea js-job-description-input"
+          placeholder="Describe the role, responsibilities, and what a typical day looks like..." required></textarea>
+        <span class="form-error js-job-description-error" style="display:none;"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="job-requirements">Requirements <span class="form-hint" style="display:inline;">(one per
+            line)</span></label>
+        <textarea id="job-requirements" class="form-textarea js-job-requirements-input"
+          placeholder="e.g.&#10;2+ years of experience with React&#10;Strong communication skills"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" class="js-post-job-terms-checkbox" required>
+          I confirm this listing accurately represents a real, active job opening and does not require applicants to pay
+          any fees.
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn--primary js-post-job-submit-btn">
+        <span class="spinner js-post-job-spinner" hidden></span>
+        <span class="js-post-job-submit-text">Submit for Review</span>
+      </button>
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="employer-dashboard.html">Dashboard</a></li>
+          <li><a href="post-job.html">Post a Job</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="toast js-toast" hidden>
+    <span class="toast__icon js-toast-icon">⚠️</span>
+    <span class="js-toast-message">Message goes here</span>
+  </div>
+
+
+  <script type="module" src="post-job.js"></script>
+</body>
+
+</html>

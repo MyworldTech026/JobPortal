@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="edit-profile.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR — graduate state -->
+  <nav class="navbar js-navbar-graduate" id="navbar-graduate">
+    <a href="graduate-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="listings.html">Find Jobs</a></li>
+        <li><a href="graduate-dashboard.html">My Applications</a></li>
+      </ul>
+      <a href="edit-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Profile picture" class="navbar__avatar js-navbar-avatar">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions"></div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="profile-page">
+    <h1 class="profile-page__title">Edit Profile</h1>
+    <p class="profile-page__subtitle">Keep your info up to date so employers know who they're hiring.</p>
+
+    <div class="auth-alert auth-alert--success js-profile-alert" hidden></div>
+
+    <div class="profile-layout">
+
+      <!-- ============================================================
+           PHOTO UPLOAD
+      ============================================================= -->
+      <section class="profile-card">
+        <h2 class="profile-card__title">Profile photo</h2>
+        <div class="photo-upload">
+          <img src="https://via.placeholder.com/96" alt="Profile photo preview"
+            class="photo-upload__preview js-photo-preview">
+          <div>
+            <label for="photo-upload-input" class="btn btn--secondary btn--sm">Change photo</label>
+            <input type="file" id="photo-upload-input" class="js-photo-input" accept="image/png,image/jpeg,image/webp"
+              hidden>
+            <p class="form-hint">JPG, PNG, or WEBP. Square images look best.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PERSONAL DETAILS
+      ============================================================= -->
+      <section class="profile-card">
+        <h2 class="profile-card__title">Personal details</h2>
+        <form class="js-profile-form">
+          <div class="form-group">
+            <label for="profile-fullname">Full name</label>
+            <input type="text" id="profile-fullname" class="form-input js-profile-fullname" placeholder="Jane Doe">
+          </div>
+
+          <div class="form-group">
+            <label for="profile-phone">Phone number</label>
+            <input type="tel" id="profile-phone" class="form-input js-profile-phone" placeholder="+234 800 000 0000">
+          </div>
+
+          <div class="form-group">
+            <label for="profile-field-of-study">Field of study</label>
+            <input type="text" id="profile-field-of-study" class="form-input js-profile-field-of-study"
+              placeholder="e.g. Computer Science">
+          </div>
+
+          <div class="form-group">
+            <label for="profile-bio">Short bio</label>
+            <textarea id="profile-bio" class="form-textarea js-profile-bio"
+              placeholder="Tell employers a bit about yourself..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="profile-skills">Skills <span class="form-hint" style="display:inline;">(comma
+                separated)</span></label>
+            <input type="text" id="profile-skills" class="form-input js-profile-skills"
+              placeholder="e.g. JavaScript, Figma, SQL">
+          </div>
+
+          <button type="submit" class="btn btn--primary js-profile-save-btn">
+            <span class="spinner js-profile-save-spinner" hidden></span>
+            <span class="js-profile-save-text">Save Changes</span>
+          </button>
+        </form>
+        <!-- <span class="form-error js-cv-error">euleuheilj</span> -->
+      </section>
+
+      <!-- ============================================================
+           CV UPLOAD
+           accept + 5MB limit as agreed: PDF, DOC, DOCX only.
+      ============================================================= -->
+      <section class="profile-card">
+        <h2 class="profile-card__title">CV / Resume</h2>
+
+        <div class="cv-upload js-cv-current" hidden>
+          <span class="cv-upload__filename js-cv-filename">resume.pdf</span>
+          <a href="#" class="cv-upload__view-link js-cv-view-link" target="_blank">View current CV</a>
+        </div>
+
+        <label for="cv-upload-input" class="btn btn--secondary btn--sm">Upload CV</label>
+        <input type="file" id="cv-upload-input" class="js-cv-input" accept=".pdf,.doc,.docx" hidden>
+        <p class="form-hint">PDF, DOC, or DOCX — max 5MB.</p>
+        <span class="form-error js-cv-error" style="display:none;"></span>
+      </section>
+
+      <!-- ============================================================
+           DANGER ZONE — account deletion
+      ============================================================= -->
+      <section class="profile-card profile-card--danger">
+        <h2 class="profile-card__title">Danger zone</h2>
+        <p class="profile-card__desc">Deleting your account is permanent and cannot be undone.</p>
+        <button class="btn btn--danger js-delete-account-btn">
+          <span class="spinner js-delete-account-spinner" hidden></span>
+          <span class="js-delete-account-text">Delete My Account</span>
+        </button>
+      </section>
+    </div>
+
+    <div class="modal-overlay js-delete-confirm-overlay" hidden>
+      <div class="modal modal--danger">
+        <!-- <button class="modal__close js-delete-confirm-close" aria-label="Close">&times;</button> -->
+        <div class="modal__icon">⚠️</div>
+        <h2 class="modal__title">Delete your account?</h2>
+        <p class="modal__subtitle">
+          This cannot be undone. Your profile, applications, and CV will be
+          permanently removed.
+        </p>
+        <div class="modal__actions">
+          <button class="btn btn--secondary btn--sm js-delete-confirm-cancel">Cancel</button>
+          <button class="btn btn--danger btn--sm js-delete-confirm-proceed">Yes, Delete </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal-overlay js-reauth-overlay" hidden>
+      <div class="modal">
+        <!-- <button class="modal__close js-reauth-close" aria-label="Close">&times;</button> -->
+        <h2 class="modal__title">Confirm your password</h2>
+        <p class="modal__subtitle">For your security, please re-enter your password to continue.</p>
+
+        <form class="js-reauth-form">
+          <div class="form-group">
+            <label for="reauth-password">Password</label>
+            <input type="password" id="reauth-password" class="form-input js-reauth-password-input"
+              placeholder="••••••••" required>
+            <span class="form-error js-reauth-error" style="display:none;"></span>
+          </div>
+          <div class="modal__actions">
+            <button type="button" class="btn btn--secondary btn--sm js-reauth-cancel">Cancel</button>
+            <button type="submit" class="btn btn--danger btn--sm js-reauth-submit">
+              <span class="spinner js-reauth-spinner" hidden></span>
+              <span class="js-reauth-submit-text">Confirm & Delete</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Graduates</h4>
+        <ul>
+          <li><a href="listings.html">Browse Jobs</a></li>
+          <li><a href="graduate-dashboard.html">My Applications</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="graduate-profile.js"></script>
+</body>
+
+</html>

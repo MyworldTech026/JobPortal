@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Dashboard — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="graduate-dashboard.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR — graduate state. If a non-graduate lands here, your JS
+       route-guard should redirect them before this even renders. -->
+  <nav class="navbar js-navbar-graduate" id="navbar-graduate">
+    <a href="graduate-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="listings.html">Find Jobs</a></li>
+        <li><a href="graduate-dashboard.html" class="active">My Applications</a></li>
+      </ul>
+      <a href="edit-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Profile picture" class="navbar__avatar js-navbar-avatar">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions"></div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="dashboard-page">
+
+    <!-- WELCOME HEADER -->
+    <div class="dashboard-header">
+
+      <div class="info-banner js-profile-incomplete-banner" hidden>
+        Your profile is incomplete. Add a CV and a bit more info so employers take you seriously.
+        <a href="edit-profile.html" style="font-weight:600; margin-left:6px;">Complete it now →</a>
+        <button class="js-dismiss-banner-btn"
+          style="background:none;border:none;float:right;cursor:pointer;">&times;</button>
+      </div>
+
+      <h1 class="dashboard-header__title">Welcome back, <span class="js-user-name"></span></h1>
+      <p class="dashboard-header__subtitle">Here's where things stand with your applications.</p>
+    </div>
+
+    <!-- ============================================================
+         STATS ROW
+         JS fills in each number from Firestore (count of applications
+         per status for the logged-in user).
+    ============================================================= -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-total">0</span>
+        <span class="stat-box__label">Total Applications</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-pending">0</span>
+        <span class="stat-box__label">Pending</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-accepted">0</span>
+        <span class="stat-box__label">Accepted</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-rejected">0</span>
+        <span class="stat-box__label">Rejected</span>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         APPLICATIONS LIST
+         The card below is one EXAMPLE. Your JS clears .js-applications-list
+         and renders one of these per application fetched from Firestore.
+    ============================================================= -->
+    <section class="applications-section">
+      <div class="applications-section__header">
+        <h2 class="applications-section__title">Your Applications</h2>
+        <select class="form-select js-status-filter" style="width: auto;">
+          <option value="all">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+
+      <div class="applications-list js-applications-list">
+
+        <div class="skeleton-loading js-applications-skeleton">
+          <div class="application-row">
+            <div class="skeleton" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+              <div class="skeleton" style="width:60%;height:16px;"></div>
+              <div class="skeleton" style="width:40%;height:12px;"></div>
+            </div>
+            <div class="skeleton" style="width:90px;height:12px;"></div>
+            <div class="skeleton" style="width:70px;height:22px;border-radius:999px;"></div>
+          </div>
+          <div class="application-row">
+            <div class="skeleton" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+              <div class="skeleton" style="width:55%;height:16px;"></div>
+              <div class="skeleton" style="width:35%;height:12px;"></div>
+            </div>
+            <div class="skeleton" style="width:90px;height:12px;"></div>
+            <div class="skeleton" style="width:70px;height:22px;border-radius:999px;"></div>
+          </div>
+        </div>
+        <!-- EXAMPLE application row
+        <div class="application-row">
+          <img src="https://via.placeholder.com/48" alt="" class="application-row__logo">
+          <div class="application-row__info">
+            <a href="job-details.html" class="application-row__title">Frontend Developer</a>
+            <span class="application-row__company">Acme Technologies</span>
+          </div>
+          <span class="application-row__date">Applied Jul 20, 2026</span>
+          <span class="status-pill status-pill--pending">Pending</span>
+        </div>
+
+        <div class="application-row">
+          <img src="https://via.placeholder.com/48" alt="" class="application-row__logo">
+          <div class="application-row__info">
+            <a href="job-details.html" class="application-row__title">UI/UX Designer</a>
+            <span class="application-row__company">Nova Studio</span>
+          </div>
+          <span class="application-row__date">Applied Jul 15, 2026</span>
+          <span class="status-pill status-pill--accepted">Accepted</span>
+        </div> -->
+      </div>
+
+      <!-- Empty state - shown when user has zero applications -->
+      <div class="empty-state js-no-applications" hidden>
+        <p class="empty-state__title">You haven't applied to any jobs yet</p>
+        <p class="empty-state__desc">Browse open roles and apply in a couple of clicks.</p>
+        <a href="listings.html" class="btn btn--primary">Browse Jobs</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER — kept for layout consistency across every page -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Graduates</h4>
+        <ul>
+          <li><a href="listings.html">Browse Jobs</a></li>
+          <li><a href="edit-profile.html">Edit Profile</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="toast js-toast" hidden>
+    <span class="toast__icon js-toast-icon">⚠️</span>
+    <span class="js-toast-message">Message goes here</span>
+  </div>
+
+  <script type="module" src="graduate.js"></script>
+</body>
+
+</html>

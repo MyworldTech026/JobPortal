@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Find Jobs — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="listings.css">
+</head>
+
+<body>
+
+
+  <!-- NAVBAR — all three states live here. JS shows exactly one based
+       on auth state; the other two stay hidden via inline style. -->
+  <nav class="navbar js-navbar-logged-out" id="navbar-logged-out">
+    <a href="index.html" class="navbar__logo">JobPortal</a>
+
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="listings.html" class="active">Find Jobs</a></li>
+        <li><a href="index.html#for-employers">For Employers</a></li>
+      </ul>
+      <a href="login.html" class="btn btn--secondary btn--sm">Log In</a>
+    </div>
+    <div class="navbar__actions">
+      <a href="signup.html" class="btn btn--primary btn--sm">Sign Up</a>
+    </div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <nav class="navbar js-navbar-graduate" id="navbar-graduate" style="display:none;">
+    <a href="graduate-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="listings.html" class="active">Find Jobs</a></li>
+        <li><a href="graduate-dashboard.html">My Applications</a></li>
+      </ul>
+      <a href="edit-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Profile picture" class="navbar__avatar js-navbar-avatar">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions"></div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <nav class="navbar js-navbar-employer" id="navbar-employer" style="display:none;">
+    <a href="employer-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="employer-dashboard.html">Dashboard</a></li>
+        <li><a href="listings.html" class="active">Browse Listings</a></li>
+        <li><a href="post-job.html">Post a Job</a></li>
+      </ul>
+      <a href="company-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Company logo" class="navbar__avatar js-navbar-avatar-employer">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions">
+      <a href="post-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+    </div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="listings-page">
+    <div class="listings-header">
+      <h1 class="listings-header__title">Find your next opportunity</h1>
+      <p class="listings-header__subtitle">Browse jobs posted by employers actively hiring right now.</p>
+
+      <!-- Search bar - js- hook so JS can filter as user types -->
+      <div class="search-bar">
+        <input type="text" class="form-input js-search-input" placeholder="Search job title or keyword...">
+        <button class="btn btn--primary js-search-btn">Search</button>
+      </div>
+    </div>
+
+    <div class="listings-layout">
+
+      <!-- ============================================================
+           FILTERS SIDEBAR
+           Each select/input has a js- hook. JS reads .value from each
+           on 'change', combines them, and re-renders the job grid.
+      ============================================================= -->
+      <aside class="filters">
+        <div class="filters__header">
+          <h2 class="filters__title">Filters</h2>
+          <button class="filters__clear js-clear-filters-btn">Clear all</button>
+        </div>
+
+        <div class="form-group">
+          <label for="filter-location">Location</label>
+          <select id="filter-location" class="form-select js-filter-location">
+            <option value="">All locations</option>
+            <option value="remote">Remote</option>
+            <option value="lagos">Lagos</option>
+            <option value="abuja">Abuja</option>
+            <option value="port-harcourt">Port Harcourt</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="filter-job-type">Job type</label>
+          <select id="filter-job-type" class="form-select js-filter-job-type">
+            <option value="">All types</option>
+            <option value="full-time">Full-time</option>
+            <option value="part-time">Part-time</option>
+            <option value="internship">Internship</option>
+            <option value="contract">Contract</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="filter-category">Category</label>
+          <select id="filter-category" class="form-select js-filter-category">
+            <option value="">All categories</option>
+            <option value="engineering">Engineering</option>
+            <option value="design">Design</option>
+            <option value="marketing">Marketing</option>
+            <option value="sales">Sales</option>
+            <option value="data">Data & Analytics</option>
+            <option value="customer-support">Customer Support</option>
+          </select>
+        </div>
+      </aside>
+
+      <!-- ============================================================
+           JOB GRID
+           This static markup is a placeholder example. Your JS will
+           clear .js-job-grid and render job-card elements dynamically
+           from Firestore data instead.
+           128 jobs found
+      ============================================================= -->
+      <section class="listings-results">
+        <div class="listings-results__meta">
+          <span class="js-results-count"></span>
+          <select class="form-select js-sort-select" style="width: auto;">
+            <option value="newest">Newest first</option>
+            <option value="salary-high">Salary: High to Low</option>
+            <option value="salary-low">Salary: Low to High</option>
+          </select>
+        </div>
+
+        <!-- ============================================================
+             SKELETON LOADING STATE
+             Shown by default while your JS fetches jobs from Firestore.
+             Once data arrives: set this to hidden, then remove [hidden]
+             from .js-job-grid (or show .js-empty-state if zero results).
+        ============================================================= -->
+        <div class="skeleton-grid js-skeleton-grid">
+          <div class="skeleton-card">
+            <div class="skeleton-card__top">
+              <div class="skeleton-card__text-block">
+                <div class="skeleton skeleton-card__title"></div>
+                <div class="skeleton skeleton-card__company"></div>
+              </div>
+              <div class="skeleton skeleton-card__logo"></div>
+            </div>
+            <div class="skeleton-card__meta">
+              <div class="skeleton skeleton-card__tag"></div>
+              <div class="skeleton skeleton-card__tag"></div>
+            </div>
+            <div class="skeleton-card__footer">
+              <div class="skeleton skeleton-card__salary"></div>
+            </div>
+          </div>
+
+          <div class="skeleton-card">
+            <div class="skeleton-card__top">
+              <div class="skeleton-card__text-block">
+                <div class="skeleton skeleton-card__title"></div>
+                <div class="skeleton skeleton-card__company"></div>
+              </div>
+              <div class="skeleton skeleton-card__logo"></div>
+            </div>
+            <div class="skeleton-card__meta">
+              <div class="skeleton skeleton-card__tag"></div>
+              <div class="skeleton skeleton-card__tag"></div>
+            </div>
+            <div class="skeleton-card__footer">
+              <div class="skeleton skeleton-card__salary"></div>
+            </div>
+          </div>
+
+          <div class="skeleton-card">
+            <div class="skeleton-card__top">
+              <div class="skeleton-card__text-block">
+                <div class="skeleton skeleton-card__title"></div>
+                <div class="skeleton skeleton-card__company"></div>
+              </div>
+              <div class="skeleton skeleton-card__logo"></div>
+            </div>
+            <div class="skeleton-card__meta">
+              <div class="skeleton skeleton-card__tag"></div>
+              <div class="skeleton skeleton-card__tag"></div>
+            </div>
+            <div class="skeleton-card__footer">
+              <div class="skeleton skeleton-card__salary"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="job-grid js-job-grid" hidden>
+          <!-- EXAMPLE CARD — repeat this structure per job via JS -->
+          <a href="job-details.html" class="job-card">
+            <div class="job-card__top">
+              <div>
+                <div class="job-card__title">Frontend Developer</div>
+                <div class="job-card__company">Acme Technologies</div>
+              </div>
+              <img src="https://via.placeholder.com/48" alt="Acme logo" class="job-card__logo">
+            </div>
+            <div class="job-card__meta">
+              <span class="job-card__tag">Lagos, Nigeria</span>
+              <span class="job-card__tag">Full-time</span>
+              <span class="job-card__tag">Entry Level</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__salary">₦250,000/mo</span>
+            </div>
+          </a>
+
+          <a href="job-details.html" class="job-card">
+            <div class="job-card__top">
+              <div>
+                <div class="job-card__title">UI/UX Designer</div>
+                <div class="job-card__company">Nova Studio</div>
+              </div>
+              <img src="https://via.placeholder.com/48" alt="Nova Studio logo" class="job-card__logo">
+            </div>
+            <div class="job-card__meta">
+              <span class="job-card__tag">Remote</span>
+              <span class="job-card__tag">Contract</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__salary">₦180,000/mo</span>
+            </div>
+          </a>
+
+          <a href="job-details.html" class="job-card">
+            <div class="job-card__top">
+              <div>
+                <div class="job-card__title">Backend Engineer</div>
+                <div class="job-card__company">Fintrack</div>
+              </div>
+              <img src="https://via.placeholder.com/48" alt="Fintrack logo" class="job-card__logo">
+            </div>
+            <div class="job-card__meta">
+              <span class="job-card__tag">Abuja, Nigeria</span>
+              <span class="job-card__tag">Full-time</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__salary">₦300,000/mo</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Empty state - JS shows this (and hides .js-job-grid) when no results match filters -->
+        <div class="empty-state js-empty-state" hidden>
+          <p class="empty-state__title js-empty-state-title">No jobs match your filters</p>
+          <p class="empty-state__desc js-empty-state-desc">Try adjusting or clearing your filters.</p>
+        </div>
+
+        <!-- Load more / pagination hook -->
+        <div class="listings-results__footer">
+          <button class="btn btn--secondary js-load-more-btn">Load more jobs</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col js-forgraduate-footer">
+        <h4>For Graduates</h4>
+        <ul>
+          <li><a href="listings.html">Browse Jobs</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col js-foremployer-footer">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="post-job.html">Post a Job</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="toast js-toast" hidden>
+    <span class="toast__icon js-toast-icon">⚠️</span>
+    <span class="js-toast-message">Message goes here</span>
+  </div>
+
+  <script type="module" src="Listing.js"></script>
+</body>
+
+</html>

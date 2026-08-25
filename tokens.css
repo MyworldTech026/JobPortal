@@ -1,0 +1,107 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   Shared CSS custom properties used across every page.
+   Link this file FIRST in every HTML page, before any other stylesheet.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand / Accent Colors ---- */
+  --color-primary: #2563eb; /* main accent - blue (trust/corporate) */
+  --color-primary-dark: #1d4ed8; /* hover states */
+  --color-primary-light: #dbeafe; /* soft backgrounds, badges */
+
+  /* ---- Status Colors (job application states, alerts) ---- */
+  --color-success: #16a34a; /* accepted / approved */
+  --color-danger: #dc2626; /* rejected / errors */
+  --color-warning: #d97706; /* pending */
+
+  /* ---- Neutrals ---- */
+  --color-text: #111827; /* near-black, body text */
+  --color-text-muted: #6b7280; /* secondary text, labels */
+  --color-border: #e5e7eb; /* dividers, input borders */
+  --color-bg: #ffffff; /* page background */
+  --color-bg-soft: #f3f4f6; /* section backgrounds, cards */
+  --color-white: #ffffff;
+
+  /* ---- Typography ---- */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --fs-xs: 0.75rem; /* 12px - small labels */
+  --fs-sm: 0.875rem; /* 14px - form hints, meta text */
+  --fs-base: 1rem; /* 16px - body text */
+  --fs-lg: 1.125rem; /* 18px - subheadings */
+  --fs-xl: 1.5rem; /* 24px - section titles */
+  --fs-2xl: 2rem; /* 32px - page titles */
+  --fs-3xl: 2.75rem; /* 44px - hero heading */
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---- Spacing Scale ---- */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
+
+  /* ---- Layout ---- */
+  --max-width: 1200px; /* main content container width */
+  --navbar-height: 72px;
+
+  /* ---- Radius ---- */
+  --radius-sm: 6px; /* inputs, small buttons */
+  --radius-md: 10px; /* cards */
+  --radius-lg: 16px; /* modals, larger panels */
+  --radius-full: 999px; /* pills, avatars */
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.06);
+  --shadow-md: 0 4px 12px rgba(17, 24, 39, 0.08);
+  --shadow-lg: 0 10px 24px rgba(17, 24, 39, 0.12);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+}
+
+/* ---- Basic Reset (kept minimal, not opinionated about layout) ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Job Details — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="job-details.css">
+</head>
+
+<body>
+  <!-- NAVBAR — all three states live here. JS shows exactly one based
+       on auth state; the other two stay hidden via inline style. -->
+  <nav class="navbar js-navbar-logged-out" id="navbar-logged-out">
+    <a href="index.html" class="navbar__logo js-jobportalkink">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="listings.html" class="active">Find Jobs</a></li>
+        <li><a href="index.html#for-employers">For Employers</a></li>
+      </ul>
+      <a href="login.html" class="btn btn--secondary btn--sm">Log In</a>
+    </div>
+    <div class="navbar__actions">
+      <a href="signup.html" class="btn btn--primary btn--sm">Sign Up</a>
+    </div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <nav class="navbar js-navbar-graduate" id="navbar-graduate" style="display:none;">
+    <a href="graduate-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="listings.html">Find Jobs</a></li>
+        <li><a href="graduate-dashboard.html">My Applications</a></li>
+      </ul>
+      <a href="edit-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Profile picture" class="navbar__avatar js-navbar-avatar">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions"></div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <nav class="navbar js-navbar-employer" id="navbar-employer" style="display:none;">
+    <a href="employer-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="employer-dashboard.html">Dashboard</a></li>
+        <li><a href="listings.html">Browse Listings</a></li>
+        <li><a href="post-job.html">Post a Job</a></li>
+      </ul>
+      <a href="company-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Company logo" class="navbar__avatar js-navbar-avatar-employer">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions">
+      <a href="post-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+    </div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="job-details-page">
+    <div class="info-banner js-profile-incomplete-banner" hidden>
+      Your profile is incomplete. Add a CV and a bit more info so employers take you seriously.
+      <a href="edit-profile.html" style="font-weight:600; margin-left:6px;">Complete it now →</a>
+      <button class="js-dismiss-banner-btn"
+        style="background:none;border:none;float:right;cursor:pointer;">&times;</button>
+    </div>
+
+    <a href="listings.html" class="back-link">&larr; Back to all jobs</a>
+
+
+    <div class="js-job-details-skeleton">
+      <div style="display:flex;gap:16px;align-items:center;margin-bottom:24px;">
+        <div class="skeleton" style="width:64px;height:64px;border-radius:10px;flex-shrink:0;"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+          <div class="skeleton" style="width:50%;height:20px;"></div>
+          <div class="skeleton" style="width:35%;height:14px;"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <div class="skeleton" style="width:80px;height:22px;border-radius:999px;"></div>
+        <div class="skeleton" style="width:70px;height:22px;border-radius:999px;"></div>
+        <div class="skeleton" style="width:90px;height:22px;border-radius:999px;"></div>
+      </div>
+      <div class="skeleton" style="width:40%;height:18px;margin-bottom:20px;"></div>
+      <div class="skeleton" style="width:100%;height:48px;border-radius:6px;margin-bottom:24px;"></div>
+      <div class="skeleton" style="width:100%;height:14px;margin-bottom:8px;"></div>
+      <div class="skeleton" style="width:95%;height:14px;margin-bottom:8px;"></div>
+      <div class="skeleton" style="width:80%;height:14px;"></div>
+    </div>
+
+    <!-- ============================================================
+         All content below is placeholder/example markup. Your JS
+         will read the job ID from the URL (e.g. ?id=abc123), fetch
+         that job from Firestore, and replace each js- hooked
+         element's text/attributes with the real data.
+    ============================================================= -->
+    <div class="job-details-card js-job-details-card" hidden>
+      <div class="job-details-header">
+        <img src="https://via.placeholder.com/64" alt="Company logo" class="job-details-header__logo js-job-logo">
+        <div>
+          <h1 class="job-details-header__title js-job-title">Frontend Developer</h1>
+          <p class="job-details-header__company js-job-company">Acme Technologies</p>
+        </div>
+      </div>
+
+      <div class="job-details-tags js-job-tags">
+        <span class="job-card__tag js-job-location">Lagos, Nigeria</span>
+        <span class="job-card__tag js-job-type">Full-time</span>
+        <span class="job-card__tag js-job-category">Engineering</span>
+        <span class="job-card__tag js-job-level">Entry Level</span>
+      </div>
+
+      <div class="job-details-salary js-job-salary">₦250,000 / month</div>
+
+      <!-- APPLY BUTTON
+           JS should check: is user logged in? are they a graduate?
+           have they already applied to this job? and update this
+           button's text/disabled state accordingly. -->
+      <button class="btn btn--primary btn--full js-apply-btn">
+        <span class="spinner js-apply-spinner" hidden></span>
+        <span class="js-apply-btn-text">Apply Now</span>
+      </button>
+      <p class="js-apply-status"
+        style="display:none; text-align:center; margin-top: var(--space-sm); font-size: var(--fs-sm); color: var(--color-success);">
+      </p>
+
+      <section class="job-details-section">
+        <h2 class="job-details-section__title">Job description</h2>
+        <p class="js-job-description">
+          We're looking for a Frontend Developer to join our team and help build
+          delightful, accessible user interfaces. You'll work closely with our
+          design and backend teams to ship features end-to-end.
+        </p>
+      </section>
+
+      <section class="job-details-section">
+        <h2 class="job-details-section__title">Requirements</h2>
+        <ul class="job-details-list js-job-requirements">
+          <li>1-2 years experience with HTML, CSS, and JavaScript</li>
+          <li>Familiarity with Git and version control</li>
+          <li>Strong communication skills</li>
+        </ul>
+      </section>
+
+      <section class="job-details-section">
+        <h2 class="job-details-section__title">About the company</h2>
+        <p class="js-job-company-about">
+          Acme Technologies builds tools for small businesses across West Africa.
+        </p>
+      </section>
+    </div>
+
+    <!-- ============================================================
+         APPLICATION MODAL (optional simple pattern)
+         Hidden by default. JS shows this when "Apply Now" is clicked,
+         collects a cover note, then submits the application.
+    ============================================================= -->
+    <div class="modal-overlay js-apply-modal-overlay" hidden>
+      <div class="modal">
+        <button class="modal__close js-apply-modal-close" aria-label="Close">&times;</button>
+        <h2 class="modal__title js-job-Title">Apply to Frontend Developer</h2>
+        <p class="modal__subtitle js-companyname">at Acme Technologies</p>
+
+        <form class="js-apply-form">
+          <div class="form-group">
+            <label for="apply-cover-note">Cover note (optional)</label>
+            <textarea id="apply-cover-note" class="form-textarea js-apply-cover-note"
+              placeholder="Tell the employer why you're a good fit..."></textarea>
+          </div>
+          <p class="form-hint">Your profile and CV on file will be shared with this employer.</p>
+          <button type="submit" class="btn btn--primary btn--full js-apply-submit-btn">
+            <span class="spinner js-apply-submit-spinner" hidden></span>
+            <span class="js-apply-submit-text">Submit Application</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col js-forgraduate-footer">
+        <h4>For Graduates</h4>
+        <ul>
+          <li><a href="listings.html">Browse Jobs</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col js-foremployer-footer">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="post-job.html">Post a Job</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="toast js-toast" hidden>
+    <span class="toast__icon js-toast-icon">⚠️</span>
+    <span class="js-toast-message">Message goes here</span>
+  </div>
+
+  <script type="module" src="job-details.js"></script>
+</body>
+
+</html>

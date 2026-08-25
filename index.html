@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JobPortal — Where Graduates Meet Employers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JobPortal connects fresh graduates with employers ready to hire. Browse jobs, apply in minutes, or post a role and find your next hire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+
+
+  <!-- NAVBAR — all three states live here. JS shows exactly one based
+       on auth state; the other two stay hidden via inline style. -->
+  <nav class="navbar js-navbar-logged-out" id="navbar-logged-out">
+    <a href="index.html" class="navbar__logo">JobPortal</a>
+   <div class="navbar__mobile-menu js-navbar-links">
+  <ul class="navbar__links">
+     <li><a href="index.html">Find Jobs</a></li>
+      <li><a href="#for-employers">For Employers</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+  </ul>
+  <a href="login.html" class="btn btn--secondary btn--sm">Log In</a>
+</div>
+<div class="navbar__actions">
+  <a href="signup.html" class="btn btn--primary btn--sm">Sign Up</a>
+</div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <nav class="navbar js-navbar-graduate" id="navbar-graduate" style="display:none;">
+    <a href="graduate-dashboard.html" class="navbar__logo">JobPortal</a>
+     <div class="navbar__mobile-menu js-navbar-links">
+  <ul class="navbar__links">
+    <li><a href="listings.html">Find Jobs</a></li>
+    <li><a href="graduate-dashboard.html">My Applications</a></li>
+  </ul>
+  <a href="edit-profile.html">
+    <img src="https://via.placeholder.com/36" alt="Profile picture" class="navbar__avatar js-navbar-avatar">
+  </a>
+  <button class="btn btn--secondary btn--sm js-logout-btn">
+    <span class="spinner js-logout-spinner" hidden></span>
+    <span class="js-logout-text">Log Out</span>
+  </button>
+</div>
+<div class="navbar__actions"></div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <nav class="navbar js-navbar-employer" id="navbar-employer" style="display:none;">
+    <a href="employer-dashboard.html" class="navbar__logo">JobPortal</a>
+     <div class="navbar__mobile-menu js-navbar-links">
+  <ul class="navbar__links">
+    <li><a href="employer-dashboard.html">Dashboard</a></li>
+    <li><a href="listings.html">Browse Listings</a></li>
+    <li><a href="post-job.html">Post a Job</a></li>
+  </ul>
+  <a href="company-profile.html">
+    <img src="https://via.placeholder.com/36" alt="Company logo" class="navbar__avatar js-navbar-avatar">
+  </a>
+  <button class="btn btn--secondary btn--sm js-logout-btn">
+    <span class="spinner js-logout-spinner" hidden></span>
+    <span class="js-logout-text">Log Out</span>
+  </button>
+</div>
+<div class="navbar__actions">
+  <a href="post-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+</div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================= -->
+  <header class="hero">
+    <div class="hero__inner">
+      <span class="hero__eyebrow">For graduates and employers, in one place</span>
+      <h1 class="hero__title">Your first job shouldn't be this hard to find.</h1>
+      <p class="hero__subtitle">
+        JobPortal connects fresh graduates with employers who are actively hiring —
+        no gatekeeping, no ghosting, just real roles and a clear path to apply.
+      </p>
+      <div class="hero__actions">
+        <a href="signup.html?role=graduate" class="btn btn--primary">Sign Up as Graduate</a>
+        <a href="signup.html?role=employer" class="btn btn--secondary">Sign Up as Employer</a>
+      </div>
+      <p class="hero__note">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       STATS BAR
+  ============================================================= -->
+  <section class="stats">
+    <div class="stats__inner">
+      <div class="stat">
+        <span class="stat__number">2,400+</span>
+        <span class="stat__label">Graduates hired</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">380+</span>
+        <span class="stat__label">Employers hiring</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">6,900+</span>
+        <span class="stat__label">Jobs posted</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS (for graduates)
+  ============================================================= -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-inner">
+      <span class="section__eyebrow">For Graduates</span>
+      <h2 class="section__title">Three steps from signup to offer letter</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step__number">01</span>
+          <h3 class="step__title">Create your profile</h3>
+          <p class="step__desc">Sign up, upload your CV, and tell employers what you're looking for.</p>
+        </div>
+        <div class="step">
+          <span class="step__number">02</span>
+          <h3 class="step__title">Browse and apply</h3>
+          <p class="step__desc">Filter jobs by location, type, and category — apply in a couple of clicks.</p>
+        </div>
+        <div class="step">
+          <span class="step__number">03</span>
+          <h3 class="step__title">Track every application</h3>
+          <p class="step__desc">See your application status update in real time from your dashboard.</p>
+        </div>
+      </div>
+      <a href="signup.html?role=graduate" class="btn btn--primary">Get Started as a Graduate</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOR EMPLOYERS
+  ============================================================= -->
+  <section class="for-employers" id="for-employers">
+    <div class="section-inner for-employers__grid">
+      <div class="for-employers__copy">
+        <span class="section__eyebrow">For Employers</span>
+        <h2 class="section__title">Hire graduates who are ready to start now</h2>
+        <p class="for-employers__desc">
+          Post a role in minutes, review applicants in one dashboard, and reach a
+          pool of graduates actively looking for their first opportunity.
+        </p>
+        <ul class="for-employers__list">
+          <li>Post unlimited job listings</li>
+          <li>Review applicant CVs in one place</li>
+          <li>Manage everything from a single dashboard</li>
+        </ul>
+        <a href="signup.html?role=employer" class="btn btn--primary">Sign Up as Employer</a>
+      </div>
+      <div class="for-employers__card">
+        <div class="job-card">
+          <div class="job-card__top">
+            <div>
+              <div class="job-card__title">Junior Data Analyst</div>
+              <div class="job-card__company">Your Company</div>
+            </div>
+            <img src="https://via.placeholder.com/48" alt="" class="job-card__logo">
+          </div>
+          <div class="job-card__meta">
+            <span class="job-card__tag">Remote</span>
+            <span class="job-card__tag">Full-time</span>
+            <span class="job-card__tag">Entry Level</span>
+          </div>
+          <div class="job-card__footer">
+            <span class="job-card__salary">14 applicants</span>
+            <span class="status-pill status-pill--pending">Reviewing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+  ============================================================= -->
+  <section class="final-cta">
+    <div class="section-inner final-cta__inner">
+      <h2 class="section__title">Ready to get started?</h2>
+      <p class="final-cta__desc">It takes less than five minutes to create an account.</p>
+      <div class="hero__actions">
+        <a href="signup.html?role=graduate" class="btn btn--primary">Sign Up as Graduate</a>
+        <a href="signup.html?role=employer" class="btn btn--secondary">Sign Up as Employer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Graduates</h4>
+        <ul>
+          <li><a href="signup.html">Browse Jobs</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="signup.html?role=employer">Post a Job</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="home.js"></script>
+</body>
+</html>
+

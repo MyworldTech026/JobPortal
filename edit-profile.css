@@ -1,0 +1,39 @@
+/* ==========================================================================
+   EDIT PROFILE PAGE STYLES (Graduate)
+   Link order: tokens.css -> components.css -> edit-profile.css
+
+   Note: .profile-page, .profile-layout, .profile-card, .photo-upload,
+   and .profile-card--danger all live in components.css now (shared with
+   Company Profile / employer page). This file only has what's unique
+   to the graduate's Edit Profile: the CV upload section.
+   ========================================================================== */
+
+.cv-upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-bg-soft);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+/* IMPORTANT: without this, [hidden] has no effect on .cv-upload,
+   because "display: flex" above overrides the browser's default
+   [hidden] { display: none; } rule. */
+.cv-upload[hidden] {
+  display: none;
+}
+
+.cv-upload__filename {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+}
+
+.cv-upload__view-link {
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+  font-weight: var(--fw-medium);
+}
+

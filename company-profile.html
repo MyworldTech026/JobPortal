@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Profile — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="company-profile.css">
+</head>
+<body>
+
+  <!-- NAVBAR — employer state -->
+  <nav class="navbar js-navbar-employer" id="navbar-employer">
+    <a href="employer-dashboard.html" class="navbar__logo">JobPortal</a>
+     <div class="navbar__mobile-menu js-navbar-links">
+  <ul class="navbar__links">
+    <li><a href="employer-dashboard.html">Dashboard</a></li>
+    <li><a href="listings.html">Browse Listings</a></li>
+    <li><a href="post-job.html">Post a Job</a></li>
+  </ul>
+  <a href="company-profile.html">
+    <img src="https://via.placeholder.com/36" alt="Company logo" class="navbar__avatar js-navbar-avatar">
+  </a>
+  <button class="btn btn--secondary btn--sm js-logout-btn">
+    <span class="spinner js-logout-spinner" hidden></span>
+    <span class="js-logout-text">Log Out</span>
+  </button>
+</div>
+<div class="navbar__actions">
+  <a href="post-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+</div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="profile-page">
+    <h1 class="profile-page__title">Company Profile</h1>
+    <p class="profile-page__subtitle">Keep your company info up to date so graduates know who they're applying to.</p>
+
+    <div class="auth-alert auth-alert--success js-profile-alert"></div>
+
+    <div class="profile-layout">
+
+      <!-- ============================================================
+           COMPANY LOGO UPLOAD
+      ============================================================= -->
+      <section class="profile-card">
+        <h2 class="profile-card__title">Company logo</h2>
+        <div class="photo-upload">
+          <img src="https://via.placeholder.com/96" alt="Company logo preview" class="photo-upload__preview js-logo-preview">
+          <div>
+            <label for="logo-upload-input" class="btn btn--secondary btn--sm">Change logo</label>
+            <input type="file" id="logo-upload-input" class="js-logo-input" accept="image/png,image/jpeg,image/webp" hidden>
+            <p class="form-hint">JPG, PNG, or WEBP. Square images look best.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           COMPANY DETAILS
+      ============================================================= -->
+      <section class="profile-card">
+        <h2 class="profile-card__title">Company details</h2>
+        <form class="js-company-profile-form">
+          <div class="form-group">
+            <label for="company-name">Company name</label>
+            <input type="text" id="company-name" class="form-input js-company-name" placeholder="Acme Technologies">
+          </div>
+
+          <div class="form-group">
+            <label for="company-website">Company website <span class="form-hint" style="display:inline;">(optional)</span></label>
+            <input type="url" id="company-website" class="form-input js-company-website" placeholder="https://acme.com">
+          </div>
+
+          <div class="form-group">
+            <label for="company-industry">Industry</label>
+            <input type="text" id="company-industry" class="form-input js-company-industry" placeholder="e.g. Fintech, Retail, Education">
+          </div>
+
+          <div class="form-group">
+            <label for="company-about">About the company</label>
+            <textarea id="company-about" class="form-textarea js-company-about" placeholder="Tell graduates a bit about what your company does..."></textarea>
+            <span class="form-hint">This appears on every job you post, under "About the company."</span>
+          </div>
+
+          <div class="form-group">
+            <label for="company-contact-email">Contact email</label>
+            <input type="email" id="company-contact-email" class="form-input js-company-contact-email" placeholder="hr@acme.com">
+            <span class="form-hint">Shown to graduates as an alternative way to reach you, if you choose.</span>
+          </div>
+
+          <button type="submit" class="btn btn--primary js-company-profile-save-btn">
+            <span class="spinner js-company-profile-save-spinner" hidden></span>
+            <span class="js-company-profile-save-text">Save Changes</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- ============================================================
+           DANGER ZONE — account deletion
+      ============================================================= -->
+      <section class="profile-card profile-card--danger">
+        <h2 class="profile-card__title">Danger zone</h2>
+        <p class="profile-card__desc">
+          Deleting your account is permanent and cannot be undone. All jobs you've
+          posted will be removed and applicants will no longer be able to view them.
+        </p>
+        <button class="btn btn--danger js-delete-account-btn">
+          <span class="spinner js-delete-account-spinner" hidden></span>
+          <span class="js-delete-account-text">Delete My Account</span>
+        </button>
+      </section>
+    </div>
+
+    <div class="modal-overlay js-delete-confirm-overlay" hidden>
+      <div class="modal modal--danger">
+        <!-- <button class="modal__close js-delete-confirm-close" aria-label="Close">&times;</button> -->
+        <div class="modal__icon">⚠️</div>
+        <h2 class="modal__title">Delete your account?</h2>
+        <p class="modal__subtitle">
+          This cannot be undone. Your profile, applications, and CV will be
+          permanently removed.
+        </p>
+        <div class="modal__actions">
+          <button class="btn btn--secondary btn--sm js-delete-confirm-cancel">Cancel</button>
+          <button class="btn btn--danger btn--sm js-delete-confirm-proceed">Yes, Delete </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay js-reauth-overlay" hidden>
+      <div class="modal">
+        <!-- <button class="modal__close js-reauth-close" aria-label="Close">&times;</button> -->
+        <h2 class="modal__title">Confirm your password</h2>
+        <p class="modal__subtitle">For your security, please re-enter your password to continue.</p>
+
+        <form class="js-reauth-form">
+          <div class="form-group">
+            <label for="reauth-password">Password</label>
+            <input type="password" id="reauth-password" class="form-input js-reauth-password-input"
+              placeholder="••••••••" required>
+            <span class="form-error js-reauth-error" style="display:none;"></span>
+          </div>
+          <div class="modal__actions">
+            <button type="button" class="btn btn--secondary btn--sm js-reauth-cancel">Cancel</button>
+            <button type="submit" class="btn btn--danger btn--sm js-reauth-submit">
+              <span class="spinner js-reauth-spinner" hidden></span>
+              <span class="js-reauth-submit-text">Confirm & Delete</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="employer-dashboard.html">Dashboard</a></li>
+          <li><a href="post-job.html">Post a Job</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+   <script type="module" src="company-profile.js"></script>
+</body>
+</html>
+

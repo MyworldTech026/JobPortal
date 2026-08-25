@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Dashboard — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="employer-dashboard.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR — employer state -->
+  <nav class="navbar js-navbar-employer" id="navbar-employer">
+    <a href="employer-dashboard.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+      <ul class="navbar__links">
+        <li><a href="employer-dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="listings.html">Browse Listings</a></li>
+        <li><a href="post-job.html">Post a Job</a></li>
+      </ul>
+      <a href="company-profile.html">
+        <img src="https://via.placeholder.com/36" alt="Company logo" class="navbar__avatar js-navbar-avatar">
+      </a>
+      <button class="btn btn--secondary btn--sm js-logout-btn">
+        <span class="spinner js-logout-spinner" hidden></span>
+        <span class="js-logout-text">Log Out</span>
+      </button>
+    </div>
+    <div class="navbar__actions">
+      <a href="post-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+    </div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="dashboard-page">
+
+    <div class="dashboard-header">
+
+      <div class="info-banner js-profile-incomplete-banner" hidden>
+        Your company profile is incomplete. Add your company name and a bit more info so graduate trust your listings.
+        <a href="company-profile.html" style="font-weight:600; margin-left:6px;">Complete it now →</a>
+        <button class="js-dismiss-banner-btn"
+          style="background:none;border:none;float:right;cursor:pointer;">&times;</button>
+      </div>
+
+      <h1 class="dashboard-header__title">Hi! <span class="js-company-name">Acme Technologies</span></h1>
+      <p class="dashboard-header__subtitle">Manage your job postings and see who's applied.</p>
+      <a href="post-job.html" class="btn btn--primary">+ Post a New Job</a>
+    </div>
+
+    <!-- ============================================================
+         STATS ROW
+         "Pending Review" matters here specifically because of the
+         manual moderation flow: new jobs sit as pending until an
+         admin approves them, so employers should clearly see that.
+    ============================================================= -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-total-jobs">0</span>
+        <span class="stat-box__label">Jobs Posted</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-pending-review">0</span>
+        <span class="stat-box__label">Pending Review</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-approved">0</span>
+        <span class="stat-box__label">Live Listings</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-box__number js-stat-total-applicants">0</span>
+        <span class="stat-box__label">Total Applicants</span>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         POSTED JOBS LIST
+         Each row below is an EXAMPLE for one of the three statuses
+         (pending / approved / rejected) so you can see how each
+         should look. Your JS clears .js-jobs-list and renders one
+         row per job document from Firestore, picking the right
+         status-pill class based on that job's `status` field.
+    ============================================================= -->
+    <section class="jobs-section">
+      <div class="jobs-section__header">
+        <h2 class="jobs-section__title">Your Job Postings</h2>
+        <select class="form-select js-status-filter" style="width: auto;">
+          <option value="all">All statuses</option>
+          <option value="pending">Pending Review</option>
+          <option value="accepted">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+
+      <div class="jobs-list js-jobs-list">
+
+        <div class="skeleton-loading js-jobs-skeleton">
+          <div class="job-row">
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+              <div class="skeleton" style="width:50%;height:16px;"></div>
+              <div class="skeleton" style="width:70%;height:12px;"></div>
+            </div>
+            <div class="skeleton" style="width:80px;height:12px;"></div>
+            <div class="skeleton" style="width:100px;height:22px;border-radius:999px;"></div>
+            <div class="skeleton" style="width:110px;height:32px;border-radius:6px;"></div>
+          </div>
+          <div class="job-row">
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+              <div class="skeleton" style="width:45%;height:16px;"></div>
+              <div class="skeleton" style="width:65%;height:12px;"></div>
+            </div>
+            <div class="skeleton" style="width:80px;height:12px;"></div>
+            <div class="skeleton" style="width:100px;height:22px;border-radius:999px;"></div>
+            <div class="skeleton" style="width:110px;height:32px;border-radius:6px;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Empty state - shown when employer has posted zero jobs -->
+      <div class="empty-state js-no-jobs" hidden>
+        <p class="empty-state__title">You haven't posted any jobs yet</p>
+        <p class="empty-state__desc">Post your first job and start finding great candidates.</p>
+        <a href="post-job.html" class="btn btn--primary">Post a Job</a>
+      </div>
+    </section>
+
+    <div class="modal-overlay js-rejection-reason-overlay" hidden>
+      <div class="modal">
+        <button class="modal__close js-rejection-reason-close" aria-label="Close">&times;</button>
+        <div class="modal__icon">❌</div>
+        <h2 class="modal__title">Job rejected</h2>
+        <p class="modal__subtitle js-rejection-reason-text">Loading...</p>
+        <div class="modal__actions">
+          <button class="btn btn--secondary btn--sm js-rejection-reason-close-btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="post-job.html">Post a Job</a></li>
+          <li><a href="employer-dashboard.html">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="employer.js"></script>
+</body>
+
+</html>

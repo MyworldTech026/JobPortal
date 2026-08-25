@@ -1,0 +1,122 @@
+/* ==========================================================================
+   GRADUATE DASHBOARD STYLES
+   Link order: tokens.css -> components.css -> graduate-dashboard.css
+   ========================================================================== */
+
+.dashboard-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+/* ---------------------------------------------------------------------------
+   HEADER
+--------------------------------------------------------------------------- */
+.dashboard-header {
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard-header__title {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard-header__subtitle {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   STATS ROW + EMPTY STATE
+   Base styles now live in components.css (shared with Employer Dashboard
+   and Listings). Nothing Graduate-Dashboard-specific needed for these.
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   APPLICATIONS SECTION
+--------------------------------------------------------------------------- */
+.applications-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.applications-section__title {
+  font-size: var(--fs-xl);
+}
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.application-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.application-row__logo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.application-row__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* allows text truncation if needed */
+}
+
+.application-row__title {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+}
+
+.application-row__title:hover {
+  color: var(--color-primary);
+}
+
+.application-row__company {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.application-row__date {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* (empty-state styling now lives in components.css) */
+
+/* ---------------------------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .application-row {
+    flex-wrap: wrap;
+  }
+
+  .application-row__date {
+    order: 3;
+    width: 100%;
+    padding-left: calc(48px + var(--space-md));
+  }
+}
+

@@ -1,0 +1,158 @@
+/* ==========================================================================
+   JOB DETAILS PAGE STYLES
+   Link order: tokens.css -> components.css -> job-details.css
+   ========================================================================== */
+
+.job-details-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+/* .back-link styling now lives in components.css (shared with Applicants page) */
+
+.job-details-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+}
+
+.job-details-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.job-details-header__logo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.job-details-header__title {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--space-xs);
+}
+
+.job-details-header__company {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+}
+
+.job-details-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.job-details-salary {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-lg);
+}
+
+.job-details-section {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.job-details-section__title {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-md);
+}
+
+.job-details-section p {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.job-details-list {
+  list-style: disc;
+  padding-left: var(--space-lg);
+  color: var(--color-text-muted);
+}
+
+.job-details-list li {
+  margin-bottom: var(--space-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   APPLY MODAL
+--------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(17, 24, 39, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  z-index: 200;
+}
+
+/* IMPORTANT: without this, [hidden] has no effect on .modal-overlay,
+   because "display: flex" above overrides the browser's default
+   [hidden] { display: none; } rule. This forces hidden to work. */
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2xl);
+}
+
+.modal__close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: none;
+  border: none;
+  font-size: var(--fs-xl);
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+.modal__close:hover {
+  color: var(--color-text);
+}
+
+.modal__title {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-xs);
+  padding-right: var(--space-xl);
+}
+
+.modal__subtitle {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+/* ---------------------------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .job-details-card {
+    padding: var(--space-lg);
+  }
+
+  .job-details-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

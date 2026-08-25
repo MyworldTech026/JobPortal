@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+
+
+
+  <!-- NAVBAR — logged-out state -->
+  <nav class="navbar js-navbar-logged-out" id="navbar-logged-out">
+    <a href="index.html" class="navbar__logo">JobPortal</a>
+   <div class="navbar__mobile-menu js-navbar-links">
+  <ul class="navbar__links">
+     <li><a href="index.html">Find Jobs</a></li>
+      <li><a href="index.html#for-employers">For Employers</a></li>
+  </ul>
+  <a href="login.html" class="btn btn--secondary btn--sm">Log In</a>
+</div>
+<div class="navbar__actions">
+  <a href="signup.html" class="btn btn--primary btn--sm">Sign Up</a>
+</div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <h1 class="auth-card__title">Welcome back</h1>
+      <p class="auth-card__subtitle">Log in to your graduate or employer account.</p>
+
+      <!-- General error banner - e.g. "Invalid email or password" -->
+      <div class="auth-alert auth-alert--error js-login-alert" hidden></div>
+
+      <form class="js-login-form" novalidate>
+        <div class="form-group">
+          <label for="login-email">Email address</label>
+          <input
+            type="email"
+            id="login-email"
+            class="form-input js-login-email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+          <span class="form-error js-login-email-error" style="display:none;"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input
+            type="password"
+            id="login-password"
+            class="form-input js-login-password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          >
+          <span class="form-error js-login-password-error"></span>
+          <a href="#" class="form-hint js-forgot-password-link" style="display:block; text-align:right; margin-top: var(--space-sm);">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full js-login-submit-btn">
+          <span class="spinner js-login-spinner" hidden></span>
+          <span class="js-login-submit-text">Log In</span>
+        </button>
+      </form>
+
+      <div class="auth-divider">OR</div>
+
+      <button type="button" class="btn btn--secondary btn--full js-google-signin-btn">
+        <span class="spinner js-google-signin-spinner" hidden></span>
+        <span class="js-google-signin-text">Continue with Google</span>
+      </button>
+
+      <p class="auth-card__footer">
+        Don't have an account? <a href="signup.html">Sign up</a>
+      </p>
+    </div>
+
+    <!-- NO ACCOUNT FOUND -->
+    <div class="modal-overlay js-no-account-overlay" hidden>
+  <div class="modal">
+    <button class="modal__close js-no-account-close" aria-label="Close">&times;</button>
+    <div class="modal__icon">🔍</div>
+    <h2 class="modal__title">No account found</h2>
+    <p class="modal__subtitle">
+      We couldn't find an account linked to that Google account. Would you like to sign up instead?
+    </p>
+    <div class="modal__actions">
+      <button class="btn btn--secondary btn--sm js-no-account-cancel">Cancel</button>
+      <button class="btn btn--primary btn--sm js-yes-signup">Yes</button>
+    </div>
+  </div>
+</div>
+
+   <div class="modal-overlay js-forgot-password-overlay" hidden>
+  <div class="modal">
+    <button class="modal__close js-forgot-password-close" aria-label="Close">&times;</button>
+    <h2 class="modal__title">Reset your password</h2>
+    <p class="modal__subtitle">Enter your email and we'll send you a link to reset your password.</p>
+
+    <div class="auth-alert auth-alert--error js-forgot-password-alert"></div>
+    <div class="auth-alert auth-alert--success js-forgot-password-success"></div>
+
+    <form class="js-forgot-password-form">
+      <div class="form-group">
+        <label for="forgot-password-email">Email address</label>
+        <input type="email" id="forgot-password-email" class="form-input js-forgot-password-email" placeholder="you@example.com" required>
+        <span class="form-error js-forgot-password-error" style="display:none;"></span>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full js-forgot-password-submit-btn">
+        <span class="spinner js-forgot-password-spinner" hidden></span>
+        <span class="js-forgot-password-submit-text">Send Reset Link</span>
+      </button>
+    </form>
+  </div>
+</div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Graduates</h4>
+        <ul>
+          <li><a href="listings.html">Browse Jobs</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="post-job.html">Post a Job</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up — JobPortal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+
+  <!-- NAVBAR — logged-out state -->
+  <nav class="navbar js-navbar-logged-out" id="navbar-logged-out">
+    <a href="index.html" class="navbar__logo">JobPortal</a>
+    <div class="navbar__mobile-menu js-navbar-links">
+  <ul class="navbar__links">
+     <li><a href="index.html">Find Jobs</a></li>
+      <li><a href="index.html#for-employers">For Employers</a></li>
+  </ul>
+  <a href="login.html" class="btn btn--secondary btn--sm">Log In</a>
+</div>
+<div class="navbar__actions">
+  <a href="signup.html" class="btn btn--primary btn--sm">Sign Up</a>
+</div>
+    <button class="navbar__toggle js-navbar-toggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+
+  <main class="auth-page">
+    <div class="auth-card auth-card--wide">
+      <h1 class="auth-card__title">Create your account</h1>
+      <p class="auth-card__subtitle">Join as a graduate looking for work, or an employer looking to hire.</p>
+
+      <!-- General error banner -->
+     
+
+      <form class="js-signup-form" novalidate>
+
+        <!-- ROLE TOGGLE — read js-role-radio value to decide which field
+             group below to reveal. Also read ?role= from the URL on page
+             load to pre-select one, if present. -->
+        <div class="form-group">
+          <label>I am a...</label>
+          <div class="role-toggle">
+            <input type="radio" name="role" id="role-grad" class="js-role-radio" value="graduate" checked>
+            <label for="role-grad">Graduate</label>
+            <input type="radio" name="role" id="role-emp" class="js-role-radio" value="employer">
+            <label for="role-emp">Employer</label>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             FIELDS SHARED BY BOTH ROLES
+        ============================================================= -->
+        <div class="form-group">
+          <label for="signup-fullname">Full name</label>
+          <input type="text" id="signup-fullname" class="form-input js-signup-fullname" placeholder="Jane Doe" autocomplete="name" required>
+          <span class="form-error js-signup-fullname-error" style="display:none;"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email address</label>
+          <input type="email" id="signup-email" class="form-input js-signup-email" placeholder="you@example.com" autocomplete="email" required>
+          <span class="form-error js-signup-email-error" style="display:none;"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" class="form-input js-signup-password" placeholder="At least 8 characters" autocomplete="new-password" required>
+          <span class="form-error js-signup-password-error" style="display:none;"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirm-password">Confirm password</label>
+          <input type="password" id="signup-confirm-password" class="form-input js-signup-confirm-password" placeholder="Re-enter your password" autocomplete="new-password" required>
+          <span class="form-error js-signup-confirm-password-error" style="display:none;"></span>
+        </div>
+
+        <!-- ============================================================
+             GRADUATE-ONLY FIELDS
+             Toggle this whole block's visibility with JS based on
+             which role radio is checked. Container has the hook,
+             each input inside has its own hook too.
+        ============================================================= -->
+        <div class="signup-fields js-graduate-fields">
+          <div class="form-group">
+            <label for="signup-phone">Phone number</label>
+            <input type="tel" id="signup-phone" class="form-input js-graduate-phone" placeholder="+234 800 000 0000">
+            <span class="form-error js-graduate-phone-error" style="display:none;"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-field-of-study">Field of study</label>
+            <input type="text" id="signup-field-of-study" class="form-input js-graduate-field-of-study" placeholder="e.g. Computer Science">
+            <span class="form-hint">You can add your CV and more details after signing up.</span>
+          </div>
+        </div>
+
+         <!-- <div class="auth-alert auth-alert--error js-signup-alert">hhtrhrjryj</div> -->
+        <!-- ============================================================
+             EMPLOYER-ONLY FIELDS
+             Hidden by default in CSS; JS shows this and hides the
+             graduate block when "Employer" is selected.
+        ============================================================= -->
+        <div class="signup-fields js-employer-fields" hidden>
+          <div class="form-group">
+            <label for="signup-company-name">Company name</label>
+            <input type="text" id="signup-company-name" class="form-input js-employer-company-name" placeholder="Acme Technologies">
+            <span class="form-error js-employer-company-name-error" hidden></span>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-company-website">Company website <span class="form-hint" style="display:inline;">(optional)</span></label>
+            <input type="url" id="signup-company-website" class="form-input js-employer-company-website" placeholder="https://acme.com">
+          </div>
+        </div>
+
+        <!-- Terms checkbox -->
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" class="js-terms-checkbox" required>
+            I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>
+          </label>
+          <span class="form-error js-terms-error" style="display:none;"></span>
+        </div>
+
+
+        <!-- general error banner -->
+          <div class="auth-alert auth-alert--error js-signup-alert"></div>
+
+        <button type="submit" class="btn btn--primary btn--full js-signup-submit-btn">
+          <span class="spinner js-signup-spinner" hidden></span>
+          <span class="js-signup-submit-text">Create Account</span>
+        </button>
+      </form>
+
+      <div class="auth-divider">OR</div>
+
+      <button type="button" class="btn btn--secondary btn--full js-google-signup-btn">
+        <span class="spinner js-google-signup-spinner" hidden></span>
+        <span class="js-google-signup-text">Continue with Google</span>
+      </button>
+
+      <p class="auth-card__footer">
+        Already have an account? <a href="login.html">Log in</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <div class="footer__brand">JobPortal</div>
+        <p style="font-size: var(--fs-sm); color: var(--color-text-muted); max-width: 260px;">
+          Connecting graduates with employers who are ready to hire.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>For Graduates</h4>
+        <ul>
+          <li><a href="listings.html">Browse Jobs</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>For Employers</h4>
+        <ul>
+          <li><a href="post-job.html">Post a Job</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 JobPortal. All rights reserved.
+    </div>
+  </footer>
+<script type="module" src="signup.js"></script>
+</body>
+</html>
+
