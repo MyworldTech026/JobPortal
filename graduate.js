@@ -3,11 +3,11 @@ import { getUser, fetchJobApplications } from './sharedfirestorefile.js';
 import { hamburgerIcon, signOut, showSuspendedScreen, formatDate, showToast } from './utils.js';
 
 
-const myApplications=JSON.parse(sessionStorage.getItem('myApplications'))
+// const myApplications=JSON.parse(sessionStorage.getItem('myApplications'))
 
-if(myApplications){
-  console.log(myApplications)
-}
+// if(myApplications){
+//   console.log(myApplications)
+// }
 
 let userid;
 let allAppliedJobs = []
@@ -31,7 +31,7 @@ watchAuthChange(
         allAppliedJobs = applications
         displayStat(applications)
         displayAppliedJobs(applications)
-        sessionStorage.setItem('myApplications', JSON.stringify(applications))
+        //sessionStorage.setItem('myApplications', JSON.stringify(applications))
       })
     }
     catch (error) {
