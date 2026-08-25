@@ -45,7 +45,7 @@ watchAuthChange(
       checkUserRole(userDetails)
 
       fetchAllApproveJobs(maxdisplay, (approvedJob, maximum, totaljob) => {
-        totaljob === 10 ? loadMoreJobBtn.style.display = `none` : loadMoreJobBtn.style.display = `flex`
+        totaljob === 5 ? loadMoreJobBtn.style.display = `none` : loadMoreJobBtn.style.display = `flex`
         allApprovedJobs = approvedJob
         applyFilter(`firstLoad`)
         maxdisplay += 5
@@ -183,7 +183,7 @@ function applyFilter(param = undefined) {
 
   else {
     emptyState.hidden = true
-    //  loadMoreJobBtn.hidden=false
+    loadMoreJobBtn.style.display = `block`
     if (!param) {
       // searchResultCounts.textContent = `${filtered.length} jobs found`
     } else {
@@ -230,13 +230,13 @@ searchBtn.addEventListener('click', () => {
     emptyStateTitle.textContent = `No jobs match your search`
     emptyStateDesc.textContent = `Try adjusting or clearing your search.`
     emptyState.hidden = false
-    // loadMoreJobBtn.hidden=true
+    loadMoreJobBtn.style.display = `none`
     job_grid.innerHTML = ``
   }
 
   else {
     emptyState.hidden = true
-    // loadMoreJobBtn.hidden=false
+   loadMoreJobBtn.style.display = `block`
     displayJobs(filtered)
   }
 
