@@ -14,7 +14,7 @@ export async function sendMail(emails) {
 }
 
 
-function hamburgerIcon(hamburger, links) {
+export function hamburgerIcon(hamburger, links) {
   hamburger.forEach((toggle) => {
     toggle.addEventListener('click', () => {
       const link = toggle.closest('.navbar').querySelector(`.${links}`)
