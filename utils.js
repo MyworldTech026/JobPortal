@@ -1,4 +1,20 @@
-export function hamburgerIcon(hamburger, links) {
+import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm'
+emailjs.init('qFwMk2ZhBJ-1842dX')
+
+
+export async function sendMail(emails) {
+  const serviceId = `service_r37gscl`
+  const templateId = `template_82orz36`
+  try {
+    await emailjs.send(serviceId, templateId, emails)
+  }
+  catch (error) {
+    //console.log(`failed to send email but order saved to database`)
+  }
+}
+
+
+function hamburgerIcon(hamburger, links) {
   hamburger.forEach((toggle) => {
     toggle.addEventListener('click', () => {
       const link = toggle.closest('.navbar').querySelector(`.${links}`)
