@@ -2,7 +2,7 @@ import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/fire
 
 import { PostJob, getUser } from './sharedfirestorefile.js'
 import { watchAuthChange, logOut } from './sharedauthfile.js'
-import { hamburgerIcon, signOut, showSuspendedScreen,showToast } from './utils.js';
+import { hamburgerIcon, signOut, showSuspendedScreen,showToast,sendMail } from './utils.js';
 
 
 const postJobForm = document.querySelector('.js-post-job-form')
@@ -93,6 +93,7 @@ postJobForm.addEventListener('submit', async (e) => {
 
   const requirements = Jobrequirements.split('\n')
   checkAndSpin('success')
+
   const jobDetails = {
     employerId: userDetails.uid, // links back to who posted it
     companyName: userDetails.companyName, // pulled from their profile, not re-typed
@@ -118,16 +119,54 @@ postJobForm.addEventListener('submit', async (e) => {
     updatedAt: serverTimestamp()
   }
 
+
+  const emailPacket = {
+    name: userDetails.companyName,
+    email: userDetails.email,
+    subject: `Your job posting is under review — ${title}`,
+    message: `Hi ${userDetails.companyName}
+          Thanks for posting "${title}" on JobPortal.
+          Your listing is now being reviewed by our team. 
+          This usually takes less than 24 hours. Once approved, it'll go live on our Job Listings page and graduates will be able to apply.
+          We'll email you again as soon as it's approved.
+
+        — The JobPortal Team`
+  }
+
+  let errorMessage
   try {
     const role = checkRole(userDetails)
-    role === `employer` ? await PostJob(jobDetails) : window.location.href = `index.html`
-    checkAndSpin('done')
-    window.location.href = `employer-dashboard.html`
+
+    //error handling for post job
+    try {
+      role === `employer` ? await PostJob(jobDetails) : window.location.href = `index.html`
+      checkAndSpin('done')
+    }
+    catch (error) {
+      throw new Error(`fail to post job`)
+    }
+    //error handling for post job ends here
+
+  
+    // error handling for send email
+    try {
+      await sendMail(emailPacket)
+    }
+    catch (error) {
+      throw new Error(`fail to send email`)
+    }
+
   }
   catch (error) {
-    console.log(error)
-     showToast(toast,toastMessage,`An error occur, Try again`)
-    checkAndSpin('fail')
+    errorMessage = error
+    if (error.message === `fail to post job`) {
+      showToast(toast, toastMessage, `An error occur, Try again`)
+      checkAndSpin('fail')
+    }
+  }
+  finally {
+    if(errorMessage?.message===`fail to post job`)return
+     window.location.href = `employer-dashboard.html`
   }
 })
 
