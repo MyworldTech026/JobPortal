@@ -39,7 +39,7 @@ export const emailTemplate = {
              Good news — "${job_title}" has been approved and is now live on JobPortal.
              Graduates can now view and apply to your listing.
              You'll be notified as applications come in, and you can review candidates anytime from your Employer Dashboard.
-             View your listing:  <a href="https://job-portal-gamma-swart.vercel.app/index.html">jobportal</a>
+             View your listing: https://job-portal-gamma-swart.vercel.app/employer-dashboard.html
 
            — The JobPortal Team
 `
