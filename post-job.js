@@ -2,7 +2,7 @@ import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/fire
 
 import { PostJob, getUser } from './sharedfirestorefile.js'
 import { watchAuthChange, logOut } from './sharedauthfile.js'
-import { hamburgerIcon, signOut, showSuspendedScreen,showToast,sendMail } from './utils.js';
+import { hamburgerIcon, signOut, showSuspendedScreen,showToast,sendMail,emailTemplate } from './utils.js';
 
 
 const postJobForm = document.querySelector('.js-post-job-form')
@@ -119,20 +119,6 @@ postJobForm.addEventListener('submit', async (e) => {
     updatedAt: serverTimestamp()
   }
 
-
-  const emailPacket = {
-    name: userDetails.companyName,
-    email: userDetails.email,
-    subject: `Your job posting is under review — ${title}`,
-    message: `Hi ${userDetails.companyName}
-          Thanks for posting "${title}" on JobPortal.
-          Your listing is now being reviewed by our team. 
-          This usually takes less than 24 hours. Once approved, it'll go live on our Job Listings page and graduates will be able to apply.
-          We'll email you again as soon as it's approved.
-
-        — The JobPortal Team`
-  }
-
   let errorMessage
   try {
     const role = checkRole(userDetails)
@@ -150,7 +136,7 @@ postJobForm.addEventListener('submit', async (e) => {
   
     // error handling for send email
     try {
-      await sendMail(emailPacket)
+       await sendMail(emailTemplate.jobSubmitted( userDetails.email,title,userDetails.companyName))
     }
     catch (error) {
       throw new Error(`fail to send email`)
