@@ -1,6 +1,6 @@
 import { getAJobDetails, getApplicants, updateApplicationStatus ,getUser} from './sharedfirestorefile.js';
 import { watchAuthChange ,logOut} from './sharedauthfile.js'
-import { showSuspendedScreen,formatDate ,signOut,showToast} from './utils.js';
+import { showSuspendedScreen,formatDate ,signOut,showToast,sendMail,emailTemplate} from './utils.js';
 
 const jobid = new URLSearchParams(window.location.search).get('id')
 
@@ -105,11 +105,23 @@ function displayApplicants(allApplicants) {
   applicantsGrid.innerHTML = applicant
 }
 
-applicantsGrid.addEventListener('change', (e) => {
+applicantsGrid.addEventListener('change', async (e) => {
   const selector = e.target.closest('.js-applicant-status-select')
   const applicantId = selector.dataset.applicantid
   const status = selector.value
-  updateApplicationStatus(jobid, applicantId, status)
+
+  const {graduateName,jobTitle,companyName,companyLogoUrl,graduateEmail}=allApplicants.find((applicant)=>{
+    return applicant.graduateId===applicantId
+  })
+ 
+ await updateApplicationStatus(jobid, applicantId, status)
+ if(status===`pending`)return
+ if(status===`accepted`){
+  sendMail(emailTemplate.applicationApproved(graduateName,jobTitle,companyName,companyLogoUrl,currentUser.email,graduateEmail))
+ }
+ else{
+  sendMail(emailTemplate.applicationRejected(graduateName,jobTitle, companyName,companyLogoUrl,currentUser.email,graduateEmail))
+ }
 })
 
 statusFilter.addEventListener('change', () => {
