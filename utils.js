@@ -1,10 +1,10 @@
 import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm'
-emailjs.init('qFwMk2ZhBJ-1842dX')
+emailjs.init('mV5ewSXL2qhHIpv3n')
 
 
 export async function sendMail(emails) {
-  const serviceId = `service_r37gscl`
-  const templateId = `template_82orz36`
+  const serviceId = `service_vyc2uue`
+  const templateId = `template_xvz4489`
   try {
     await emailjs.send(serviceId, templateId, emails)
   }
