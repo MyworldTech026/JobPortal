@@ -217,6 +217,7 @@ function applicantDetails(note) {
     graduatePhotoUrl: currentUser.photoUrl,
     graduateFieldOfStudy: currentUser.fieldOfStudy,
     cvUrl: currentUser.cvUrl,
+    graduateEmail:currentUser.email,
 
     accountDeleted:false,
     coverNote: note,
