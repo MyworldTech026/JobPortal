@@ -98,6 +98,7 @@ postJobForm.addEventListener('submit', async (e) => {
     employerId: userDetails.uid, // links back to who posted it
     companyName: userDetails.companyName, // pulled from their profile, not re-typed
     companyLogoUrl: userDetails.companyLogoUrl, // pulled from their profile
+    employerEmail:userDetails.email,
 
     title,
     description,
