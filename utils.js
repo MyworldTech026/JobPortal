@@ -30,21 +30,6 @@ export const emailTemplate = {
         — The JobPortal Team`
   }),
 
-  jobApproved: (companyName, job_title) => ({
-    reply_to: `muhammedzulikaneni2004@gmail.com`,
-    logo_url: ``,
-    company_name: 'JobPortal',
-    subject: `Your job is now live— ${job_title}`,
-    email_body: `Hi ${companyName},
-             Good news — "${job_title}" has been approved and is now live on JobPortal.
-             Graduates can now view and apply to your listing.
-             You'll be notified as applications come in, and you can review candidates anytime from your Employer Dashboard.
-             View your listing: https://job-portal-gamma-swart.vercel.app/employer-dashboard.html
-
-           — The JobPortal Team
-`
-  }),
-
   applicationApproved: (graduateName, job_title, companyName, companyLogo, employerEmail,graduateEmail) => ({
     reply_to: employerEmail,
     logo_url: companyLogo,
