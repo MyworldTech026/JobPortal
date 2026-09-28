@@ -1,6 +1,9 @@
 import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm'
 emailjs.init('qFwMk2ZhBJ-1842dX')
+import {footerYear} from ./
 
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 const contactForm = document.querySelector('.js-contact-form')
 const sendBtn = document.querySelector('.js-contact-submit-btn')
