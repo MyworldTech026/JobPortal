@@ -2,7 +2,10 @@ import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/fire
 import { getAJobDetails, getUser, getEmployer, applyForJob, checkIfAlreadyApplyForJob, updateApplicantCount } from './sharedfirestorefile.js'
 import { logOut, watchAuthChange } from './sharedauthfile.js'
 
-import { hamburgerIcon, signOut, showSuspendedScreen ,showToast} from './utils.js'
+import { hamburgerIcon, signOut, showSuspendedScreen ,showToast,footerYear} from './utils.js'
+
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 
 const jobId = new URLSearchParams(window.location.search).get('id')
