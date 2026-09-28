@@ -1,6 +1,6 @@
 import { watchAuthChange, logOut } from './sharedauthfile.js'
 import { getUser, fetchJobApplications } from './sharedfirestorefile.js';
-import { hamburgerIcon, signOut, showSuspendedScreen, formatDate, showToast } from './utils.js';
+import { hamburgerIcon, signOut, showSuspendedScreen, formatDate, showToast,footerYear } from './utils.js';
 
 
 // const myApplications=JSON.parse(sessionStorage.getItem('myApplications'))
@@ -156,6 +156,9 @@ statusFilter.addEventListener('change', () => {
 
 const hamburger = document.querySelectorAll('.js-navbar-toggle')
 hamburgerIcon(hamburger, `js-navbar-links`)
+
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 // function emptyStateChecker(filter,status){
 //   if(status===`pending`){
