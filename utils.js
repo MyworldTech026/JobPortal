@@ -166,3 +166,8 @@ export function showToast(toast,toastMessageElem,message) {
     setTimeout(() => { toast.hidden = true; }, 350); // wait for slide-up animation to finish
   },  3500);
 }
+
+export function footerYear(){
+  const year= new Date().getFullYear()
+  return year
+}
