@@ -1,6 +1,6 @@
 import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm'
 emailjs.init('qFwMk2ZhBJ-1842dX')
-import {footerYear} from ./
+import {footerYear} from './utils.js';
 
 const footer=document.querySelector('.footer__bottom')
   footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
