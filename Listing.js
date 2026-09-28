@@ -1,6 +1,9 @@
 import { watchAuthChange, logOut } from './sharedauthfile.js'
 import { getUser, fetchAllApproveJobs } from './sharedfirestorefile.js';
-import { hamburgerIcon, signOut, showSuspendedScreen, showToast } from './utils.js';
+import { hamburgerIcon, signOut, showSuspendedScreen, showToast ,footerYear} from './utils.js';
+
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 const skeletonFrame = document.querySelector('.js-skeleton-grid')
 const navLogout = document.querySelector('.js-navbar-logged-out')
