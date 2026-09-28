@@ -1,6 +1,9 @@
 import { getAJobDetails, getApplicants, updateApplicationStatus ,getUser} from './sharedfirestorefile.js';
 import { watchAuthChange ,logOut} from './sharedauthfile.js'
-import { showSuspendedScreen,formatDate ,signOut,showToast,sendMail,emailTemplate} from './utils.js';
+import { showSuspendedScreen,formatDate ,signOut,showToast,sendMail,emailTemplate,footerYear} from './utils.js';
+
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 const jobid = new URLSearchParams(window.location.search).get('id')
 
