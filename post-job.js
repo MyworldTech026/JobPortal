@@ -2,8 +2,10 @@ import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/fire
 
 import { PostJob, getUser } from './sharedfirestorefile.js'
 import { watchAuthChange, logOut } from './sharedauthfile.js'
-import { hamburgerIcon, signOut, showSuspendedScreen,showToast,sendMail,emailTemplate } from './utils.js';
+import { hamburgerIcon, signOut, showSuspendedScreen,showToast,sendMail,emailTemplate,footerYear } from './utils.js';
 
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 const postJobForm = document.querySelector('.js-post-job-form')
 const jobtitle = document.querySelector('.js-job-title-input')
