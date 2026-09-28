@@ -1,9 +1,10 @@
 import { watchAuthChange, logOut } from './sharedauthfile.js'
 import { getUser, getJobsByEmployer, getApplicants, getAJobDetails } from './sharedfirestorefile.js';
-import { hamburgerIcon, signOut, showSuspendedScreen, formatDate } from './utils.js';
+import { hamburgerIcon, signOut, showSuspendedScreen, formatDate ,footerYear} from './utils.js';
 
 
-
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 let companyId;
 let companyName;
