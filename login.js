@@ -1,6 +1,6 @@
 import { login,resetPassword} from "./sharedauthfile.js"
 import { getUser, handleGoogleSignIn } from "./sharedfirestorefile.js"
-import { hamburgerIcon } from './utils.js';
+import { hamburgerIcon,footerYear } from './utils.js';
 
 // login form related elements
 const loginEmail = document.querySelector('.js-login-email')
@@ -126,6 +126,10 @@ document.querySelector('.js-forgot-password-form').addEventListener('submit', as
     submitBtn.disabled = false;
   }
 });
+
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
+
 
 
 const hamburger = document.querySelectorAll('.js-navbar-toggle')
