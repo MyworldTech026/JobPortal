@@ -1,6 +1,6 @@
 import { watchAuthChange, DeleteUser, logOut, reauthGoogleUserForDelete } from './sharedauthfile.js'
 import { updateProfile, getUser, uploadToCloudinary, updateProfileImage, updateGraduateCV, listenForUser, saveToStorage, finishAccountDeletion,anonymizeGraduateApplications } from './sharedfirestorefile.js'
-import { hamburgerIcon, signOut ,showSuspendedScreen} from './utils.js';
+import { hamburgerIcon, signOut ,showSuspendedScreen,footerYear} from './utils.js';
 
 let USER;
 
@@ -303,7 +303,8 @@ const logoutText = document.querySelectorAll('.js-logout-text')
 signOut(logoutBtn, logoutSpinner, logoutText, logOut)
 
 
-
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 
 
