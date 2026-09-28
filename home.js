@@ -1,6 +1,7 @@
 import { watchAuthChange, logOut } from './sharedauthfile.js'
 import { getUser} from './sharedfirestorefile.js';
-import { hamburgerIcon } from './utils.js';
+import { hamburgerIcon, footerYear} from './utils.js';
+
 
 
 watchAuthChange(
@@ -34,3 +35,6 @@ function checkUserRole(user) {
 
 const hamburger=document.querySelectorAll('.js-navbar-toggle')
  hamburgerIcon(hamburger,`js-navbar-links`)
+
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
