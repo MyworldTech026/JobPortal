@@ -2,7 +2,7 @@ import { db, auth } from './config.js'
 import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
 import { createAccount, signinWithGoggle } from './sharedauthfile.js'
 import { saveUserDetails, handleGoogleSignIn } from './sharedfirestorefile.js'
-import { hamburgerIcon } from './utils.js';
+import { hamburgerIcon ,footerYear} from './utils.js';
 const selectedRole = new URLSearchParams(window.location.search).get('role')
 
 
@@ -239,4 +239,7 @@ signup_Google.addEventListener('click', async () => {
 
 const hamburger = document.querySelectorAll('.js-navbar-toggle')
 hamburgerIcon(hamburger, `js-navbar-links`)
+
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
