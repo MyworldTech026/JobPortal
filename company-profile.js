@@ -1,7 +1,9 @@
 import { watchAuthChange, DeleteUser, logOut, reauthGoogleUserForDelete } from './sharedauthfile.js'
 import { updateEmployerProfile, uploadToCloudinary, updateProfileImage, listenForUser, saveToStorage, finishAccountDeletion, deleteAllJobsByEmployer } from './sharedfirestorefile.js'
-import { hamburgerIcon, signOut,showSuspendedScreen ,showToast} from './utils.js';
+import { hamburgerIcon, signOut,showSuspendedScreen ,showToast,footerYear} from './utils.js';
 
+const footer=document.querySelector('.footer__bottom')
+  footer.innerHTML=` &copy; ${footerYear()} JobPortal. All rights reserved.`
 
 let USER
 
